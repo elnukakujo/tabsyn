@@ -35,6 +35,7 @@ def main(args):
     '''
     start_time = time.time()
 
+    # Since we want the same number of generated samples as the training set, we use a multiplier
     num_samples = math.ceil(train_z.shape[0] * 1.2)
     print(f'Generating {num_samples} samples...')
     sample_dim = in_dim
