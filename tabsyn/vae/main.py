@@ -112,9 +112,9 @@ def main(args):
     pre_decoder.eval()
 
     optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=WD)
-    scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.95, patience=10, verbose=True)
+    scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.95, patience=10)
 
-    num_epochs = 4000
+    num_epochs = 100
     best_train_loss = float('inf')
 
     current_lr = optimizer.param_groups[0]['lr']

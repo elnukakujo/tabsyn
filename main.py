@@ -1,5 +1,17 @@
 import torch
+import numpy as np
 from utils import execute_function, get_args
+
+import pandas as pd
+import torch
+import numpy as np
+import random
+
+# Set random seeds for reproducibility
+torch.manual_seed(42)
+torch.cuda.manual_seed(42)
+np.random.seed(42)
+random.seed(42)
 
 if __name__ == '__main__':
     args = get_args()

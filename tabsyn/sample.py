@@ -7,6 +7,7 @@ import time
 from tabsyn.model import MLPDiffusion, Model
 from tabsyn.latent_utils import get_input_generate, recover_data, split_num_cat_target
 from tabsyn.diffusion_utils import sample
+import math
 
 warnings.filterwarnings('ignore')
 
@@ -18,6 +19,7 @@ def main(args):
     save_path = args.save_path
 
     train_z, _, _, ckpt_path, info, num_inverse, cat_inverse = get_input_generate(args)
+
     in_dim = train_z.shape[1] 
 
     mean = train_z.mean(0)
@@ -33,7 +35,8 @@ def main(args):
     '''
     start_time = time.time()
 
-    num_samples = train_z.shape[0]
+    num_samples = math.ceil(train_z.shape[0] * 1.2)
+    print(f'Generating {num_samples} samples...')
     sample_dim = in_dim
 
     x_next = sample(model.denoise_fn_D, num_samples, sample_dim)
